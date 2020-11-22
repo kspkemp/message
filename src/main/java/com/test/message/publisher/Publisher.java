@@ -1,0 +1,32 @@
+/**
+ * 
+ */
+package com.test.message.publisher;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author Kusha
+ *
+ */
+@Component
+public class Publisher {
+
+	@Autowired
+	private AmqpTemplate amqpTemplate;
+
+	@Value("${jsa.rabbitmq.exchange}")
+	private String exchange;
+	
+	@Value("${jsa.rabbitmq.queue}")
+	private String queue;
+
+	public void produceMsg(String msg) {
+		amqpTemplate.convertAndSend(exchange, "primaryRoutingKey", msg);
+		System.out.println("Send msg = " + msg);
+	}
+
+}

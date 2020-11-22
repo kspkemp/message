@@ -1,0 +1,14 @@
+twilio:
+  account_sid: ACd4c2ccf9a7aa966b1d9b5aa668f1c302
+  auth_token: b6cf6976f45579be5ca9d5b501efec5c
+  trial_number: +12526187682
+spring:
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 6
+          max-interval: 10s
+          multiplier: 2
